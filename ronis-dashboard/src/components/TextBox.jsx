@@ -1,0 +1,9 @@
+export default function TextBox({ text }) {
+    return (
+        <div className="bg-white bg-opacity-10 rounded-lg p-4 max-w-[800px] mt-6">
+            <div className="p-3 text-white bg-[#f8cd83] bg-opacity-80 rounded-lg mb-2 font-bold break-words">
+                {text}
+            </div>
+        </div>
+    );
+}
