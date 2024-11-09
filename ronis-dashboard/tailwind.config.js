@@ -6,7 +6,12 @@ export default {
             colors: {
                 primary: "#F5B74E",
             },
+            fontFamily: {
+                MostraNuovaHeavy: ['MostraNuovaHeavy', 'sans-serif'],
+                MostraNuova: ['MostraNuova', 'sans-serif'],
+            },
         },
-    },
+    },   
     plugins: [],
 };
+
