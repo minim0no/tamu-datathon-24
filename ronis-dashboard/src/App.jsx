@@ -2,10 +2,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Statistics from "./pages/Statistics";
 import Recommendations from "./pages/Recommendations";
 import NavBar from "./components/NavBar";
+import Chat from "./components/ChatBox";
 
 function App() {
     return (
-        <div className="font-MostraNuova w-full h-full">
+        <div className="font-MostraNuova w-full h-full relative">
             <Router>
                 <NavBar />
                 <Routes>
@@ -16,6 +17,7 @@ function App() {
                     />
                 </Routes>
             </Router>
+            <Chat />
         </div>
     );
 }
