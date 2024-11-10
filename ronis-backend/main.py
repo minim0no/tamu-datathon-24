@@ -125,4 +125,4 @@ def order_over_time():
 
 # Running the Flask app
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
