@@ -1,11 +1,13 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, abort
 import joblib
 import pandas as pd
 
-meat_model = joblib.load('../models/models/meat_prediction.joblib')
-toppings_model = joblib.load('../models/models/toppings_prediction.joblib')
-drizzles_model = joblib.load('../models/models/drizzles_prediction.joblib')
-cheese_model = joblib.load('../models/models/cheese_prediction.joblib')
+import utils.utils as utils
+
+meat_model = joblib.load('./models/models/meat_prediction.joblib')
+toppings_model = joblib.load('./models/models/toppings_prediction.joblib')
+drizzles_model = joblib.load('./models/models/drizzles_prediction.joblib')
+cheese_model = joblib.load('./models/models/cheese_prediction.joblib')
 
 meats = ['Pulled Pork', 'Brisket', 'No Meat', 'Bacon', 'Grilled Chicken', 'Ham']
 toppings = ['Broccoli', 'Tomatoes', 'Breadcrumbs', 'Corn', 'Mushrooms', 'Parmesan', 'Jalapenos', 'No Toppings', 'Bell Peppers', 'Pineapple', 'Onions']
@@ -57,6 +59,44 @@ def api_data():
         return jsonify(json_data)
 
     return {}
+
+@app.route('/api/key-metrics', methods=['GET'])
+def key_metrics():
+    data = request.get_json()
+    try:
+        start_date = data["start_date"]
+        end_date = data["end_date"]
+
+        
+
+        df = utils.get_data_from_range(df, start_date, end_date)
+        ai_score = utils.get_ai_score(df)
+        number_of_orders = utils.get_number_of_orders(df)
+        total_revenue = utils.get_total_revenue(df)
+    except Exception as e:
+        abort(500, description=str(e))
+
+
+    return jsonify({
+        "ai_score": ai_score,
+        "number_of_orders": number_of_orders,
+        "total_revenue": total_revenue
+    })
+
+@app.route('/api/top-orders', methods=['GET'])
+def top_orders():
+    data = request.get_json()
+    try:
+        start_date = data["start_date"]
+        end_date = data["end_date"]
+
+        df = utils.get_data_from_range(df, start_date, end_date)
+        top_orders = utils.get_top_orders(df)
+    except Exception as e:
+        abort(500, description=str(e))
+
+    return jsonify(top_orders)
+
 
 
 # Running the Flask app
