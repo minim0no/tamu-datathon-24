@@ -31,7 +31,7 @@ const Navbar = () => {
                                 : ""
                         } hover:text-primary active:text-primary`}
                     >
-                        RECOMMENDATIONS
+                        POPULARITY
                     </NavLink>
                 </li>
             </ul>

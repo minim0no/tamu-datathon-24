@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import HoverCard from "../components/HoverCard";
+import { setDefaultLocale } from "react-datepicker";
 
 export default function Recommendations() {
     const [hover, setHover] = useState(false);
@@ -21,7 +22,7 @@ export default function Recommendations() {
             name: "Onions",
             category: "Topping",
             link: "https://incentivio.s3.amazonaws.com/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/20240327124308296/sm/Onions.jpg",
-            rank: 0,
+            rank: 3,
         },
         {
             name: "Jalapenos",
@@ -57,13 +58,13 @@ export default function Recommendations() {
             name: "Parmesan",
             category: "Topping",
             link: "https://incentivio.s3.amazonaws.com/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/20240327124308296/sm/Parmesan.jpg",
-            rank: 0,
+            rank: 1,
         },
         {
             name: "Breadcrumbs",
             category: "Topping",
             link: "https://incentivio.s3.amazonaws.com/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/20240327124308296/sm/Breadcrumbs.jpg",
-            rank: 0,
+            rank: 2,
         },
         {
             name: "No Toppings",
@@ -75,19 +76,19 @@ export default function Recommendations() {
             name: "Cheddar",
             category: "Cheese",
             link: "https://incentivio.s3.amazonaws.com/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/20240327124308296/sm/Cheddar.jpg",
-            rank: 0,
+            rank: 1,
         },
         {
             name: "Pepper Jack",
             category: "Cheese",
             link: "https://incentivio.s3.amazonaws.com/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/20240327124308296/sm/Pepper%20Jack.jpg",
-            rank: 0,
+            rank: 2,
         },
         {
             name: "Alfredo",
             category: "Cheese",
             link: "https://incentivio.s3.amazonaws.com/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/20240327124308296/sm/Alfredo.jpg",
-            rank: 0,
+            rank: 3,
         },
         {
             name: "No Meat",
@@ -99,7 +100,7 @@ export default function Recommendations() {
             name: "Grilled Chicken",
             category: "Meat",
             link: "https://incentivio.s3.amazonaws.com/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/20240327124308296/sm/Grilled%20Chicken.jpg",
-            rank: 0,
+            rank: 2,
         },
         {
             name: "Pulled Pork",
@@ -111,13 +112,13 @@ export default function Recommendations() {
             name: "Brisket",
             category: "Meat",
             link: "https://incentivio.s3.amazonaws.com/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/20240327124308296/sm/Brisket.jpg",
-            rank: 0,
+            rank: 1,
         },
         {
             name: "Bacon",
             category: "Meat",
             link: "https://incentivio.s3.amazonaws.com/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/20240327124308296/sm/Bacon.jpg",
-            rank: 0,
+            rank: 3,
         },
         {
             name: "Ham",
@@ -129,19 +130,19 @@ export default function Recommendations() {
             name: "No Drizzle",
             category: "Drizzle",
             link: "https://incentivio.s3.amazonaws.com/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/20240327124308296/sm/No%20Drizzle.jpg",
-            rank: 0,
+            rank: 3,
         },
         {
             name: "BBQ",
             category: "Drizzle",
             link: "https://incentivio.s3.amazonaws.com/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/20240327124308296/sm/BBQ.jpg",
-            rank: 0,
+            rank: 2,
         },
         {
             name: "Garlic Parmesan",
             category: "Drizzle",
             link: "https://incentivio.s3.amazonaws.com/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/20240327124308296/sm/Garlic%20Parmesan.jpg",
-            rank: 0,
+            rank: 1,
         },
         {
             name: "Buffalo",
@@ -171,19 +172,19 @@ export default function Recommendations() {
             name: "No Side",
             category: "Side",
             link: "https://incentivio.s3.amazonaws.com/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/20240327124308296/sm/No%20Side.jpg",
-            rank: 0,
+            rank: 1,
         },
         {
             name: "Garlic Bread",
             category: "Side",
             link: "https://s3.amazonaws.com/incentivio/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/Harker%20Heights%2C%20TX%20-%20Garlic%20BreadSM-66c651ac_1.jpg",
-            rank: 0,
+            rank: 3,
         },
         {
             name: "Cheesy Garlic Bread",
             category: "Side",
             link: "https://s3.amazonaws.com/incentivio/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/College%20Station%2C%20TX%20-%20Cheesy%20Garlic%20BreadSM-66c65335_1.jpg",
-            rank: 0,
+            rank: 2,
         },
         {
             name: "Cheesy Broccoli",
@@ -237,7 +238,7 @@ export default function Recommendations() {
             name: "Apple Juice",
             category: "Drink",
             link: "https://incentivio.s3.amazonaws.com/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/Waco%2C%20TX%20-%20Apple%20JuiceSM-6646e53c_1.jpg",
-            rank: 0,
+            rank: 2,
         },
         {
             name: "Coke",
@@ -248,14 +249,14 @@ export default function Recommendations() {
         {
             name: "Dr. Pepper",
             category: "Drink",
-            link: "https://incentivio.s3.amazonaws.com/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/College%20Station%2C%20TX%20-%20Dr.%20PepperSM-664a3029_1.png",
-            rank: 0,
+            link: "https://i.redd.it/buq5g7t9opy31.png",
+            rank: 1,
         },
         {
             name: "Sprite",
             category: "Drink",
-            link: "https://incentivio.s3.amazonaws.com/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/College%20Station%2C%20TX%20-%20SpriteSM-664a308e_1.png",
-            rank: 0,
+            link: "https://pizzadellorto.com/wp-content/uploads/2023/04/sprite-logo-png-1-modified.png",
+            rank: 3,
         },
         {
             name: "Coke Zero",
@@ -277,7 +278,7 @@ export default function Recommendations() {
         },
     ];
 
-    useEffect(() => {
+    /*useEffect(() => {
         const getRank = async () => {
             try {
                 const params = new URLSearchParams({
@@ -304,13 +305,90 @@ export default function Recommendations() {
             }
         };
         getRank();
-    }, []);
+    }, []);*/
+
+    /*useEffect(() => {
+        const getRank = async () => {
+            try {
+                const params = new URLSearchParams({
+                    start_date: "2024-04-01",
+                    end_date: "2024-11-06",
+                });
+                const response = await fetch(
+                    "http://127.0.0.1:5000/api/top-orders" +
+                        "?" +
+                        params.toString()
+                );
+                if (!response.ok) {
+                    throw new Error(`API request failed with status: ${response.status}`);
+                }
+
+                const json = await response.json();
+
+                const quantities = {};
+
+                for(let category in json) 
+                {
+                    for(let item in json[category])
+                    {
+                        quantities[item] = json[category][item];
+                    }
+                }
+
+                const rankedData = data.map((item) => {
+                    const quantity = quantities[item.name] || 0;
+
+                    return {
+                        ...item,
+                        quantity,
+                    }
+                });
+
+                rankedData.sort((a, b) => b.quantity - a.quantity);
+
+                const finalRankedData = rankedData.map((item, index) => ({
+                    ...item,
+                    rank: index + 1,
+                }));
+
+                console.log("Final Ranked Data:", finalRankedData);
+                setData(finalRankedData);
+            } catch {
+                return;
+            }
+        };
+        getRank();
+    }, []);*/
+
+    console.log(data);
 
     const filterData = (category, rank) => {
-        return data.filter(
-            (item) => item.category == category && item.rank == rank
-        );
+        return data.filter(item => item.category == category && item.rank == rank);
     };
+
+    const topping1 = filterData("Topping", 1);
+    const topping2 = filterData("Topping", 2);
+    const topping3 = filterData("Topping", 3);
+
+    const cheese1 = filterData("Cheese", 1);
+    const cheese2 = filterData("Cheese", 2);
+    const cheese3 = filterData("Cheese", 3);
+
+    const meat1 = filterData("Meat", 1);
+    const meat2 = filterData("Meat", 2);
+    const meat3 = filterData("Meat", 3);
+
+    const drizzle1 = filterData("Drizzle", 1);
+    const drizzle2 = filterData("Drizzle", 2);
+    const drizzle3 = filterData("Drizzle", 3);
+
+    const side1 = filterData("Side", 1);
+    const side2 = filterData("Side", 2);
+    const side3 = filterData("Side", 3);
+
+    const drink1 = filterData("Drink", 1);
+    const drink2 = filterData("Drink", 2);
+    const drink3 = filterData("Drink", 3);
 
     return (
         <div className="pb-0 flex flex-col items-center font-MostraNuovaHeavy justify-top bg-primary">
@@ -319,144 +397,144 @@ export default function Recommendations() {
                     Most Popular Toppings
                 </h1>
                 <div
-                    className={`flex flex-row gap-10`}
+                    className={`flex flex-row items-center text-center justify-around`}
                     onMouseEnter={() => setHover(true)}
                     onMouseLeave={() => setHover(false)}
                 >
                     <HoverCard
                         rank="1"
-                        link="https://incentivio.s3.amazonaws.com/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/20240327124308296/sm/Cheddar.jpg"
-                        text="Hi"
+                        link={topping1[0].link}
+                        text={topping1[0].name}
                     />
                     <HoverCard
                         rank="2"
-                        link="https://incentivio.s3.amazonaws.com/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/20240327124308296/sm/Corn.jpg"
-                        text="Corn"
+                        link={topping2[0].link}
+                        text={topping2[0].name}
                     />
                     <HoverCard
                         rank="3"
-                        link="https://incentivio.s3.amazonaws.com/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/20240327124308296/sm/Corn.jpg"
-                        text="Corn"
+                        link={topping3[0].link}
+                        text={topping3[0].name}
                     />
                 </div>
                 <h1 className="text-4xl text-center pt-5 pb-5 text-black">
                     Most Popular Cheeses
                 </h1>
                 <div
-                    className={`flex flex-row gap-10`}
+                    className={`flex flex-row justify-around`}
                     onMouseEnter={() => setHover(true)}
                     onMouseLeave={() => setHover(false)}
                 >
                     <HoverCard
                         rank="1"
-                        link="https://s3.amazonaws.com/incentivio/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/College%20Station%2C%20TX%20-%20Mac%20and%20CheeseSM-66c6508a_1.jpg"
-                        text="Mac"
+                        link={cheese1[0].link}
+                        text={cheese1[0].name}
                     />
                     <HoverCard
                         rank="2"
-                        link="https://s3.amazonaws.com/incentivio/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/College%20Station%2C%20TX%20-%20Grilled%20Cheese%20SandwichSM-66c650f0_1.jpg"
-                        text="Sandwich"
+                        link={cheese2[0].link}
+                        text={cheese2[0].name}
                     />
                     <HoverCard
                         rank="3"
-                        link="https://incentivio.s3.amazonaws.com/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/20240327124308296/sm/Corn.jpg"
-                        text="Corn"
+                        link={cheese3[0].link}
+                        text={cheese3[0].name}
                     />
                 </div>
                 <h1 className="text-4xl text-center pt-5 pb-5 text-black">
                     Most Popular Meats
                 </h1>
                 <div
-                    className={`flex flex-row gap-10`}
+                    className={`flex flex-row justify-around`}
                     onMouseEnter={() => setHover(true)}
                     onMouseLeave={() => setHover(false)}
                 >
                     <HoverCard
                         rank="1"
-                        link="https://s3.amazonaws.com/incentivio/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/College%20Station%2C%20TX%20-%20Mac%20and%20CheeseSM-66c6508a_1.jpg"
-                        text="Mac"
+                        link={meat1[0].link}
+                        text={meat1[0].name}
                     />
                     <HoverCard
                         rank="2"
-                        link="https://s3.amazonaws.com/incentivio/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/College%20Station%2C%20TX%20-%20Grilled%20Cheese%20SandwichSM-66c650f0_1.jpg"
-                        text="Sandwich"
+                        link={meat2[0].link}
+                        text={meat2[0].name}
                     />
                     <HoverCard
                         rank="3"
-                        link="https://incentivio.s3.amazonaws.com/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/20240327124308296/sm/Corn.jpg"
-                        text="Corn"
+                        link={meat3[0].link}
+                        text={meat3[0].name}
                     />
                 </div>
-                <h1 className="text-4xl text-center pt-5 pb-5 text-black">
+                <h1 className="text-4xl pt-5 pb-5 text-center text-black">
                     Most Popular Drizzles
                 </h1>
                 <div
-                    className={`flex flex-row gap-10`}
+                    className={`flex flex-row items-center justify-around place-items-center text-wrap`}
                     onMouseEnter={() => setHover(true)}
                     onMouseLeave={() => setHover(false)}
                 >
                     <HoverCard
                         rank="1"
-                        link="https://s3.amazonaws.com/incentivio/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/College%20Station%2C%20TX%20-%20Mac%20and%20CheeseSM-66c6508a_1.jpg"
-                        text="Mac"
+                        link={drizzle1[0].link}
+                        text={drizzle1[0].name}
                     />
                     <HoverCard
                         rank="2"
-                        link="https://s3.amazonaws.com/incentivio/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/College%20Station%2C%20TX%20-%20Grilled%20Cheese%20SandwichSM-66c650f0_1.jpg"
-                        text="Sandwich"
+                        link={drizzle2[0].link}
+                        text={drizzle2[0].name}
                     />
                     <HoverCard
                         rank="3"
-                        link="https://incentivio.s3.amazonaws.com/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/20240327124308296/sm/Corn.jpg"
-                        text="Corn"
+                        link={drizzle3[0].link}
+                        text={drizzle3[0].name}
                     />
                 </div>
                 <h1 className="text-4xl text-center pt-5 pb-5 text-black">
                     Most Popular Sides
                 </h1>
                 <div
-                    className={`flex flex-row gap-10`}
+                    className={`flex flex-row justify-around`}
                     onMouseEnter={() => setHover(true)}
                     onMouseLeave={() => setHover(false)}
                 >
                     <HoverCard
                         rank="1"
-                        link="https://s3.amazonaws.com/incentivio/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/College%20Station%2C%20TX%20-%20Mac%20and%20CheeseSM-66c6508a_1.jpg"
-                        text="Mac"
+                        link={side1[0].link}
+                        text={side1[0].name}
                     />
                     <HoverCard
                         rank="2"
-                        link="https://s3.amazonaws.com/incentivio/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/College%20Station%2C%20TX%20-%20Grilled%20Cheese%20SandwichSM-66c650f0_1.jpg"
-                        text="Sandwich"
+                        link={side2[0].link}
+                        text={side2[0].name}
                     />
                     <HoverCard
                         rank="3"
-                        link="https://incentivio.s3.amazonaws.com/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/20240327124308296/sm/Corn.jpg"
-                        text="Corn"
+                        link={side3[0].link}
+                        text={side3[0].name}
                     />
                 </div>
                 <h1 className="text-4xl text-center pt-5 pb-5 text-black">
                     Most Popular Drinks
                 </h1>
                 <div
-                    className={`flex flex-row gap-10`}
+                    className={`flex flex-row justify-around`}
                     onMouseEnter={() => setHover(true)}
                     onMouseLeave={() => setHover(false)}
                 >
                     <HoverCard
                         rank="1"
-                        link="https://s3.amazonaws.com/incentivio/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/College%20Station%2C%20TX%20-%20Mac%20and%20CheeseSM-66c6508a_1.jpg"
-                        text="Mac"
+                        link={drink1[0].link}
+                        text={drink1[0].name}
                     />
                     <HoverCard
                         rank="2"
-                        link="https://s3.amazonaws.com/incentivio/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/College%20Station%2C%20TX%20-%20Grilled%20Cheese%20SandwichSM-66c650f0_1.jpg"
-                        text="Sandwich"
+                        link={drink2[0].link}
+                        text={drink2[0].name}
                     />
                     <HoverCard
                         rank="3"
-                        link="https://incentivio.s3.amazonaws.com/0c48bd0e-9e50-40cc-a606-e6b1b10fd06d/i/20240327124308296/sm/Corn.jpg"
-                        text="Corn"
+                        link={drink3[0].link}
+                        text={drink3[0].name}
                     />
                 </div>
             </div>
