@@ -6,7 +6,7 @@ import NavBar from "./components/NavBar";
 
 function App() {
     return (
-      <div className="font-MostraNuova">
+      <div className="font-MostraNuova w-full h-full">
           <Router>
               <NavBar/>
               <Routes>
