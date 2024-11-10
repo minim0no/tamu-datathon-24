@@ -74,48 +74,83 @@ export default function Dashboard() {
         const temperature = temperatureRef.current.value;
         const holiday = holidayRef.current.value == "yes" ? 1 : 0;
 
-        const response = await fetch(
-            "http://127.0.0.1:5000/api/model" +
-                `?model=meat&day=${day.toISOString()}&month=${month.toISOString()}&hour=${hour.toISOString()}&temperature=${temperature.toISOString()}&holiday=${holiday.toISOString()}&weekend=${
-                    holiday.toISOString
-                }`
-        );
-
+        const response = await fetch("http://127.0.0.1:5000/api/model", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                model: "meat",
+                day: day,
+                month: month,
+                hour: hour,
+                temperature: temperature,
+                holiday: holiday,
+                weekend: holiday,
+            }),
+        });
         const meat_data = await response.json();
 
-        const response2 = await fetch(
-            "http://127.0.0.1:5000/api/model" +
-                `?model=topping&day=${day.toISOString()}&month=${month.toISOString()}&hour=${hour.toISOString()}&temperature=${temperature.toISOString()}&holiday=${holiday.toISOString()}&weekend=${
-                    holiday.toISOString
-                }`
-        );
-
+        const response2 = await fetch("http://127.0.0.1:5000/api/model", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                model: "topping",
+                day: day,
+                month: month,
+                hour: hour,
+                temperature: temperature,
+                holiday: holiday,
+                weekend: holiday,
+            }),
+        });
         const topping_data = await response2.json();
 
-        const response3 = await fetch(
-            "http://127.0.0.1:5000/api/model" +
-                `?model=drizzle&day=${day.toISOString()}&month=${month.toISOString()}&hour=${hour.toISOString()}&temperature=${temperature.toISOString()}&holiday=${holiday.toISOString()}&weekend=${
-                    holiday.toISOString
-                }`
-        );
+        const response3 = await fetch("http://127.0.0.1:5000/api/model", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                model: "drizzle",
+                day: day,
+                month: month,
+                hour: hour,
+                temperature: temperature,
+                holiday: holiday,
+                weekend: holiday,
+            }),
+        });
 
         const drizzle_data = await response3.json();
 
-        const response4 = await fetch(
-            "http://127.0.0.1:5000/api/model" +
-                `?model=cheese&day=${day.toISOString()}&month=${month.toISOString()}&hour=${hour.toISOString()}&temperature=${temperature.toISOString()}&holiday=${holiday.toISOString()}&weekend=${
-                    holiday.toISOString
-                }`
-        );
-
+        const response4 = await fetch("http://127.0.0.1:5000/api/model", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                model: "cheese",
+                day: day,
+                month: month,
+                hour: hour,
+                temperature: temperature,
+                holiday: holiday,
+                weekend: holiday,
+            }),
+        });
         const cheese_data = await response4.json();
 
         setPrediction({
-            meat: meat_data,
-            topping: topping_data,
-            drizzle: drizzle_data,
-            cheese: cheese_data,
+            meat: meat_data[0],
+            topping: topping_data[0],
+            drizzle: drizzle_data[0],
+            cheese: cheese_data[0],
         });
+
+        console.log(prediction);
         setLoading(false);
     };
 
@@ -324,7 +359,7 @@ export default function Dashboard() {
                 </div>
             </div>
             {/* Six Bar Charts for Categories */}
-            <div className="flex flex-wrap justify-center items-center mt-20 gap-5 mb-20">
+            <div className="grid grid-cols-3 mt-20 gap-5 mb-20">
                 <Chart
                     text="Top Cheese"
                     labels={topCheese.map((item) => item[0])}
@@ -385,7 +420,7 @@ export default function Dashboard() {
                         />
                         <input
                             type="number"
-                            placeholder="Enter a temperature (°F)"
+                            placeholder="Enter a temperature (°C)"
                             className="p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500"
                             ref={temperatureRef}
                         />
@@ -406,13 +441,89 @@ export default function Dashboard() {
                         Predict
                     </button>
                 </form>
-            </div>
+                {loading && <p>Loading...</p>}
 
-            {/* Monthly Sales Chart*/}
-            <div className="flex bg-[#FCCB77] rounded-lg p-6 shadow-lg w-full max-w-4xl mt-8">
-                <div className="flex-1 p-4">
-                    <Line data={chartData} options={chartOptions} />
-                </div>
+                {prediction && (
+                    <div className="mt-4">
+                        <h2 className="text-2xl font-bold text-center mb-4">
+                            Predicted Top Items
+                        </h2>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {/* Main Ingredient */}
+                            <div className="flex flex-col gap-4">
+                                <h3 className="text-xl font-semibold">
+                                    Main Ingredient
+                                </h3>
+                                {Object.keys(prediction["meat"]).map(
+                                    (key, index) => (
+                                        <p key={index} className="text-lg">
+                                            {key}{" "}
+                                            {parseInt(
+                                                prediction["meat"][key] * 100
+                                            )}
+                                            %
+                                        </p>
+                                    )
+                                )}
+                            </div>
+
+                            {/* Topping */}
+                            <div className="flex flex-col gap-4">
+                                <h3 className="text-xl font-semibold">
+                                    Topping
+                                </h3>
+                                {Object.keys(prediction["topping"]).map(
+                                    (key, index) => (
+                                        <p key={index} className="text-lg">
+                                            {key}{" "}
+                                            {parseInt(
+                                                prediction["topping"][key] * 100
+                                            )}
+                                            %
+                                        </p>
+                                    )
+                                )}
+                            </div>
+
+                            {/* Drizzle */}
+                            <div className="flex flex-col gap-4">
+                                <h3 className="text-xl font-semibold">
+                                    Drizzle
+                                </h3>
+                                {Object.keys(prediction["drizzle"]).map(
+                                    (key, index) => (
+                                        <p key={index} className="text-lg">
+                                            {key}{" "}
+                                            {parseInt(
+                                                prediction["drizzle"][key] * 100
+                                            )}
+                                            %
+                                        </p>
+                                    )
+                                )}
+                            </div>
+
+                            {/* Cheese */}
+                            <div className="flex flex-col gap-4">
+                                <h3 className="text-xl font-semibold">
+                                    Cheese
+                                </h3>
+                                {Object.keys(prediction["cheese"]).map(
+                                    (key, index) => (
+                                        <p key={index} className="text-lg">
+                                            {key}{" "}
+                                            {parseInt(
+                                                prediction["cheese"][key] * 100
+                                            )}
+                                            %
+                                        </p>
+                                    )
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
