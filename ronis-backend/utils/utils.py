@@ -154,7 +154,6 @@ def get_top_orders(df):
     mac_and_cheese_count = df['Modifier'].fillna('').apply(lambda x: 'Cheddar' == x or 'Pepper Jack' == x or 'Alfredo' == x).sum()
     grilled_cheese_count = df['Modifier'].fillna('').apply(lambda x: 'Melted Cheddar' in x or 'Melted Pepper Jack' in x or 'Melted Parm' in x).sum()
     mac_and_cheese_tray_count = df['Parent Menu Selection'].fillna('').apply(lambda x: 'Mac and Cheese Party Tray' in x).sum()
-    grilled_cheese_tray_count = df['Parent Menu Selection'].fillna('').apply(lambda x: 'Grilled Cheese Sandwich Party Tray' in x).sum()
 
     grilled_chicken_count = df['Modifier'].fillna('').apply(lambda x: 'Grilled Chicken' in x).sum()
     pulled_pork_count = df['Modifier'].fillna('').apply(lambda x: 'Pulled Pork' in x).sum()
@@ -219,7 +218,6 @@ def get_top_orders(df):
             "Mac and Cheese": mac_and_cheese_count,
             "Grilled Cheese Sandwich": grilled_cheese_count,
             "Mac and Cheese Party Tray": mac_and_cheese_tray_count,
-            "Grilled Cheese Sandwich Party Tray": grilled_cheese_tray_count,
         },
         "Meat": {
             "Grilled Chicken": grilled_chicken_count,
