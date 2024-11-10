@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HoverCard from "../components/HoverCard";
 
 export default function Recommendations() {
@@ -284,8 +284,20 @@ export default function Recommendations() {
                     start_date: "2024-04-01",
                     end_date: "2024-11-06",
                 });
-                const response = fetch("http://127.0.0.1:5000/api/top-orders");
+                const response = await fetch(
+                    "http://127.0.0.1:5000/api/top-orders" +
+                        "?" +
+                        params.toString()
+                );
                 const json = await response.json();
+                for (let category in json) {
+                    const sortedItems = Object.entries(json[category]).sort(
+                        (a, b) => b[1] - a[1]
+                    );
+
+                    json[category] = Object.fromEntries(sortedItems);
+                }
+
                 console.log(json);
             } catch {
                 return;
