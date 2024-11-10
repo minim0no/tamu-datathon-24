@@ -17,7 +17,7 @@ function App() {
                         element={<Recommendations />}
                     />
                 </Routes>
-                <Footer/>
+                <Footer />
             </Router>
             <Chat />
         </div>

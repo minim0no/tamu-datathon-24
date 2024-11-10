@@ -44,16 +44,16 @@ export default function Chat() {
     return (
         <div className="fixed bottom-0 right-6 z-50 w-[350px]">
             <div
-                className="bg-white p-2 rounded-t-lg cursor-pointer flex items-center justify-center text-lg font-bold gap-4"
+                className="bg-black p-2 rounded-t-lg cursor-pointer flex items-center justify-center text-lg font-bold gap-4 text-white"
                 onClick={() => setIsOpen(!isOpen)}
             >
-                Chat with Mr. Roni
+                Talk Business With Mr. Roni
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    className="text-black"
+                    className="text-white"
                     width="24"
                     height="24"
                 >
@@ -78,7 +78,7 @@ export default function Chat() {
             <div
                 className={`${
                     isOpen
-                        ? "h-[400px] p-4 rounded-b-lg shadow-lg bg-[#f8cd83] border-4 border-white flex flex-col justify-between"
+                        ? "h-[400px] p-4 rounded-b-lg shadow-lg bg-[#f8cd83] border-4 border-black flex flex-col justify-between"
                         : "hidden"
                 } transition-all duration-300 overflow-y-auto`}
             >
@@ -106,9 +106,9 @@ export default function Chat() {
                             <div className="w-full">
                                 <div className="flex flex-row space-x-1 justify-start">
                                     {" "}
-                                    <div className="h-2 w-2 bg-white rounded-full animate-bounce animate-[infinite] [animation-delay:-0.3s]"></div>
-                                    <div className="h-2 w-2 bg-white rounded-full animate-bounce animate-[infinite] [animation-delay:-0.15s]"></div>
-                                    <div className="h-2 w-2 bg-white rounded-full animate-bounce animate-[infinite]"></div>
+                                    <div className="h-2 w-2 bg-black rounded-full animate-bounce animate-[infinite] [animation-delay:-0.3s]"></div>
+                                    <div className="h-2 w-2 bg-black rounded-full animate-bounce animate-[infinite] [animation-delay:-0.15s]"></div>
+                                    <div className="h-2 w-2 bg-black rounded-full animate-bounce animate-[infinite]"></div>
                                 </div>
                             </div>
                         </div>
