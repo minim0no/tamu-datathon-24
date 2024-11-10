@@ -167,6 +167,13 @@ export default function Dashboard() {
                     </div>
                 ))}
             </div>
+
+            {/* Monthly Sales Chart*/}
+            <div className="flex bg-[#FCCB77] rounded-lg p-6 shadow-lg w-full max-w-4xl mt-8">
+                <div className="flex-1 p-4">
+                    <Line data={chartData} options={chartOptions} />
+                </div>
+            </div>
         </div>
     );
 }
