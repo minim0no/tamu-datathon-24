@@ -93,7 +93,7 @@ export default function Dashboard() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-start min-h-screen p-6 pt-12" style={{ backgroundColor: "#F5B74E" }}>
+        <div className="flex flex-col items-center justify-start p-6 pt-12" style={{ backgroundColor: "#F5B74E" }}>
             {/* Date Picker */}
             <div className="flex items-center gap-4 mb-4">
                 <div className="bg-black text-white p-2 rounded-full">

@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "chart.js": "^4.4.6",
+    "datepicker": "^0.0.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-datepicker": "^7.5.0"
+  }
+}
