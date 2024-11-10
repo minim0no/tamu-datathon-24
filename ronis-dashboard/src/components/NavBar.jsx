@@ -1,6 +1,6 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
     const location = useLocation();
@@ -15,7 +15,11 @@ const Navbar = () => {
                     <NavLink
                         to="/statistics"
                         exact={true}
-                        className={`${location.pathname == "/statistics" ? "text-primary": ""} hover:text-primary active:text-primary`}
+                        className={`${
+                            location.pathname == "/statistics"
+                                ? "text-primary"
+                                : ""
+                        } hover:text-primary active:text-primary`}
                     >
                         STATS
                     </NavLink>
@@ -23,7 +27,11 @@ const Navbar = () => {
                 <li>
                     <NavLink
                         to="/recommendations"
-                        className={`${location.pathname == "/recommendations" ? "text-primary": ""} hover:text-primary active:text-primary`}
+                        className={`${
+                            location.pathname == "/recommendations"
+                                ? "text-primary"
+                                : ""
+                        } hover:text-primary active:text-primary`}
                     >
                         RECOMMENDATIONS
                     </NavLink>
@@ -32,7 +40,9 @@ const Navbar = () => {
                     <NavLink
                         to="/"
                         exact={true}
-                        className={`${location.pathname == "/" ? "text-primary": ""} hover:text-primary active:text-primary`}
+                        className={`${
+                            location.pathname == "/" ? "text-primary" : ""
+                        } hover:text-primary active:text-primary`}
                     >
                         CHAT BOX
                     </NavLink>
