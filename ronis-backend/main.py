@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request, jsonify, abort
 import joblib
 import pandas as pd
+from flask_cors import CORS
 
 import utils.utils as utils
+from utils.utils import df
 
 meat_model = joblib.load('./models/models/meat_prediction.joblib')
 toppings_model = joblib.load('./models/models/toppings_prediction.joblib')
@@ -15,6 +17,7 @@ drizzles = ['BBQ', 'No Drizzle', 'Garlic Parmesan', 'Hot Honey', 'Ranch', 'Buffa
 cheese = ['Cheddar', 'Pepper Jack', 'Alfredo', 'MIX', 'NO CHEESE', 'Gouda']
 
 app = Flask(__name__)
+CORS(app)
 
 def predict(model, array, inputs):
     feature_names = ['day', 'month', 'hour', 'temperature', 'holiday', 'weekend']
@@ -62,17 +65,16 @@ def api_data():
 
 @app.route('/api/key-metrics', methods=['GET'])
 def key_metrics():
-    data = request.get_json()
     try:
-        start_date = data["start_date"]
-        end_date = data["end_date"]
+        start_date = request.args.get("start_date")
+        end_date = request.args.get("end_date")
 
         
 
-        df = utils.get_data_from_range(df, start_date, end_date)
-        ai_score = utils.get_ai_score(df)
-        number_of_orders = utils.get_number_of_orders(df)
-        total_revenue = utils.get_total_revenue(df)
+        df_range = utils.get_data_from_range(df, start_date, end_date)
+        ai_score = utils.get_ai_score(df_range)
+        number_of_orders = utils.get_number_of_orders(df_range)
+        total_revenue = utils.get_total_revenue(df_range)
     except Exception as e:
         abort(500, description=str(e))
 
@@ -85,18 +87,32 @@ def key_metrics():
 
 @app.route('/api/top-orders', methods=['GET'])
 def top_orders():
-    data = request.get_json()
     try:
-        start_date = data["start_date"]
-        end_date = data["end_date"]
+        start_date = request.args.get("start_date")
+        end_date = request.args.get("end_date")
 
-        df = utils.get_data_from_range(df, start_date, end_date)
-        top_orders = utils.get_top_orders(df)
+        df_range = utils.get_data_from_range(df, start_date, end_date)
+        print("got data")
+        top_orders = utils.get_top_orders(df_range)
+        print("got top orders")
     except Exception as e:
         abort(500, description=str(e))
 
     return jsonify(top_orders)
 
+
+@app.route('/api/order-over-time', methods=['GET'])
+def order_over_time():
+    try:
+        start_date = request.args.get("start_date")
+        end_date = request.args.get("end_date")
+
+        df_range = utils.get_data_from_range(df, start_date, end_date)
+        order_over_time = utils.get_orders_over_time(df_range)
+    except Exception as e:
+        abort(500, description=str(e))
+
+    return jsonify(order_over_time.to_dict(orient='records'))
 
 
 # Running the Flask app
