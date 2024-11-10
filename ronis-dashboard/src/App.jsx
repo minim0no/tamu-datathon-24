@@ -3,10 +3,11 @@ import Statistics from "./pages/Statistics";
 import Recommendations from "./pages/Recommendations";
 import NavBar from "./components/NavBar";
 import Chat from "./components/ChatBox";
+import Footer from "./components/Footer";
 
 function App() {
     return (
-        <div className="font-MostraNuova w-full h-full relative">
+        <div className="font-MostraNuova w-full h-full relative flex flex-col justify-between">
             <Router>
                 <NavBar />
                 <Routes>
@@ -16,6 +17,7 @@ function App() {
                         element={<Recommendations />}
                     />
                 </Routes>
+                <Footer/>
             </Router>
             <Chat />
         </div>
