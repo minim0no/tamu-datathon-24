@@ -1,6 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
     const location = useLocation();
@@ -13,7 +16,7 @@ const Navbar = () => {
             <ul class="flex flex-row space-x-7 place-items-center">
                 <li>
                     <NavLink
-                        to="/statistics"
+                        to="/"
                         exact={true}
                         className={`${
                             location.pathname == "/statistics"
