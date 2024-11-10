@@ -359,7 +359,7 @@ export default function Dashboard() {
                 </div>
             </div>
             {/* Six Bar Charts for Categories */}
-            <div className="grid grid-cols-3 mt-20 gap-5 mb-20">
+            <div className="grid grid-cols-3  mt-20 gap-5 mb-20">
                 <Chart
                     text="Top Cheese"
                     labels={topCheese.map((item) => item[0])}

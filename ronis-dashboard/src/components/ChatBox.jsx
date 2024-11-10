@@ -16,7 +16,7 @@ export default function Chat() {
         setQuery(event.target.value);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         if (query.trim() !== "") {
             setQueries([...queries, query]);
@@ -24,19 +24,23 @@ export default function Chat() {
             setLoading(true);
             setQuery("");
         }
+
+        const response = await fetch("http://127.0.0.1:5000/api/chatbot", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ query }),
+        });
+
+        const data = await response.json();
+        console.log(data);
+
+        setResponses([...responses, JSON.stringify(data.response)]);
+
+        setSubmitted(false);
+        setLoading(false);
     };
-
-    useEffect(() => {
-        if (loading) {
-            setTimeout(() => {
-                const response =
-                    "I think you should add more vegan options! I think you should add more vegan options! I think you should add more vegan options! I think you should add more vegan options! ";
-                setResponses([...responses, response]);
-                setLoading(false);
-            }, 2000);
-        }
-    }, [loading, queries, responses]);
-
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [queries, responses]);
