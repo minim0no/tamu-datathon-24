@@ -146,7 +146,11 @@ def predict(model, array, inputs):
 
     input_data = pd.DataFrame([inputs], columns=feature_names)
 
-    probabilities = [estimator.predict_proba(input_data)[:, 1] for estimator in model.estimators_]
+    probabilities = [
+        estimator.predict_proba(input_data)[:, 1] if estimator.predict_proba(input_data).shape[1] > 1
+        else estimator.predict_proba(input_data)[:, 0]
+        for estimator in model.estimators_
+    ]
     probabilities = pd.DataFrame(probabilities, index=array).T
 
     return probabilities
@@ -155,41 +159,36 @@ def predict(model, array, inputs):
 def home():
     return render_template('index.html')
 
-@app.route('/api/model', methods=['GET'])
+@app.route('/api/model', methods=['POST'])
 def api_data():
-    model = request.args.get('model')  
+    data = request.get_json()
+    model = data["model"]
 
-    day = request.args.get('day')
-    month = request.args.get('month')
-    hour = request.args.get('hour')
-    temperature = request.args.get('temperature')
-    holiday = request.args.get('holiday')
-    weekend = request.args.get('weekend')
-
-    input_parameters = [day, month, hour, temperature, holiday, weekend]
-    
+    input_parameters = [data["day"], data["month"], data["hour"], data["temperature"], data["holiday"], data["weekend"]]
     if model == "meat":
         prediction = predict(model=meat_model, array=meats, inputs=input_parameters)
         json_data = prediction.to_json(orient='records')
-        return jsonify(json_data)
-    
+
+        print(json_data)
+
+        return json_data
     elif model == "topping":
         prediction = predict(model=toppings_model, array=toppings, inputs=input_parameters)
         json_data = prediction.to_json(orient='records')
-        return jsonify(json_data)
 
+        return json_data
     elif model == "drizzle":
         prediction = predict(model=drizzles_model, array=drizzles, inputs=input_parameters)
         json_data = prediction.to_json(orient='records')
-        return jsonify(json_data)
 
+        return json_data
     elif model == "cheese":
         prediction = predict(model=cheese_model, array=cheese, inputs=input_parameters)
         json_data = prediction.to_json(orient='records')
-        return jsonify(json_data)
 
-    return {} 
+        return json_data
 
+    return {}
 
 
 @app.route('/api/key-metrics', methods=['GET'])
