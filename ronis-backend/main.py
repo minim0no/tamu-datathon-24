@@ -121,8 +121,16 @@ def order_over_time():
     date_count_map = {str(date): count for date, count in order_over_time['count'].items()}
     return jsonify(date_count_map)
 
+@app.route('/api/chatbot', methods=['POST'])
+def chatbot():
+    data = request.get_json()
+    message = data["query"]
 
+    response = utils.chat_with_bot(message)
+    print(response)
+
+    return jsonify({"response": response})
 
 # Running the Flask app
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

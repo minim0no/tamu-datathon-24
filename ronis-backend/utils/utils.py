@@ -1,5 +1,43 @@
 import pandas as pd
 import glob
+import openai
+import os
+import openai
+from pinecone import Pinecone
+import pandas as pd
+from dotenv import load_dotenv
+
+load_dotenv()
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+
+pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
+
+def generate_embeddings(text):
+    return openai.Embedding.create(
+        input=text, model="text-embedding-ada-002"
+    )["data"][0]["embedding"]
+
+
+
+def get_response(query):
+    index = pc.Index("sales-data")
+    
+    query_embedding = generate_embeddings(query)
+    results = index.query(
+        vector=query_embedding,
+        top_k=5,
+        include_metadata=True
+    )
+
+    result = []
+    # Display the results
+    for match in results["matches"]:
+        result.append(match["metadata"])
+
+        return result
+
 
 price_map = {
     "Mac and Cheese": 8.99,
@@ -298,7 +336,10 @@ def get_orders_over_time(df):
     return df_grouped
 
 
-data = get_data_from_range(df, '2024-03-01', '2024-11-06')
 
 
+def chat_with_bot(prompt):
+    response = get_response(prompt)
 
+    return response
+    
